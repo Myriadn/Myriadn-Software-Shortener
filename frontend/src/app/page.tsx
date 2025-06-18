@@ -1,6 +1,5 @@
 "use client";
 
-import "dotenv/config";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
@@ -28,7 +27,7 @@ export default function Home() {
       setIsLoading(true);
       const response = await shortenUrl(data.originalUrl);
       // Karena backend tidak mengembalikan shortUrl, kita perlu membuatnya
-      const shortUrl = `${process.env.PUBLIC_API_URL}/${response.id}`;
+      const shortUrl = `${process.env.NEXT_PUBLIC_API_URL}/${response.id}`;
       setShortUrl(shortUrl);
       toast.success("URL shortened successfully!");
       reset();

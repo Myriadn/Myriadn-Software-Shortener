@@ -1,6 +1,5 @@
 "use client";
 
-import "dotenv/config";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { getUserUrls, deleteUrl } from "@/lib/api";
@@ -44,7 +43,7 @@ export default function Dashboard() {
       // Transform data to include shortUrl
       const transformedData = data.map((url: UrlData) => ({
         ...url,
-        shortUrl: `${window.location.origin}/${url.id}`,
+        shortUrl: `${process.env.NEXT_PUBLIC_API_URL}/${url.id}`,
         originalUrl: url.url,
         createdAt: url.created_at,
         shortId: url.id,

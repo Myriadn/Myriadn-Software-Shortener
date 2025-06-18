@@ -1,8 +1,8 @@
-import "dotenv/config";
 import axios from "axios";
 
 // BASE API URL
-const BASE_API_URL = process.env.PUBLIC_API_URL || "http://localhost:9000/";
+const BASE_API_URL =
+  process.env.NEXT_PUBLIC_API_URL || "http://localhost:9000/";
 
 // Konfigurasi axios
 const api = axios.create({
