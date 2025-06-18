@@ -17,13 +17,13 @@ const validateBody = (body: RequestBody, validationSchema: Validator.Rules) => {
   }
 };
 
-export const validateCreateShortURL = async (body: RequestBody) =>
+export const validateCreateShortURL = (body: RequestBody) =>
   validateBody(body, {
     url: "url|required",
     id: "string|min:5|max:10|not_in:urls,visits,auth",
   });
 
-export const validateUpdateShortURL = async (body: RequestBody) =>
+export const validateUpdateShortURL = (body: RequestBody) =>
   validateBody(body, {
     url: "url|required",
   });

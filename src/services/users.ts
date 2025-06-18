@@ -1,6 +1,6 @@
 import httpError from "http-errors";
-import { validateLogin, validateRegister } from "./validations";
 import knex from "../config/knex";
+import { validateLogin, validateRegister } from "./validations";
 import { comparePassword, hashPassword } from "../config/encryption";
 import { generateToken } from "../config/jwt";
 

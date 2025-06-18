@@ -14,7 +14,7 @@ export const getLastVisits = async (
     .select(["urls.id", "urls.url", "visits.ip", "visits.created_at"])
     .where({ user_id })
     .limit(limit || 15)
-    .offset(offset || 6)
+    .offset(offset || 0)
     .orderBy("visits.created_at", "desc");
 
 export const getVisitsByURL = async (
@@ -23,7 +23,7 @@ export const getVisitsByURL = async (
   limit: number,
   offset: number
 ) => {
-  const url = await knex("url")
+  const url = await knex("urls")
     .where({ id: url_id })
     .select(["user_id"])
     .first();

@@ -78,6 +78,6 @@ export const getURLS = async (
     .limit(limit || 15)
     .offset(offset || 0)
     .groupBy("urls.id")
-    .orderBy("urls.created_at","desc");
+    .orderBy("urls.created_at", "desc");
   return results;
 };

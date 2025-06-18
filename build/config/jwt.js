@@ -12,27 +12,19 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-require("dotenv/config");
-const koa_1 = __importDefault(require("koa"));
-const cors_1 = __importDefault(require("@koa/cors"));
-const koa_helmet_1 = __importDefault(require("koa-helmet"));
-const koa_bodyparser_1 = __importDefault(require("koa-bodyparser"));
-const knex_1 = require("./config/knex");
-const index_1 = __importDefault(require("./routes/index"));
-const app = new koa_1.default();
-app.use((0, cors_1.default)());
-app.use((0, koa_helmet_1.default)());
-app.use((0, koa_bodyparser_1.default)());
-app.use(index_1.default.routes()).use(index_1.default.allowedMethods());
-const main = () => __awaiter(void 0, void 0, void 0, function* () {
+exports.validateJWT = exports.generateToken = void 0;
+const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
+const http_errors_1 = __importDefault(require("http-errors"));
+const JWT_PRIVATE_KEY = process.env.JWT_PRIVATE_KEY;
+const generateToken = (payload) => __awaiter(void 0, void 0, void 0, function* () { return jsonwebtoken_1.default.sign(payload, JWT_PRIVATE_KEY, { expiresIn: "365d" }); });
+exports.generateToken = generateToken;
+const validateJWT = (token) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        yield (0, knex_1.onDatabaseConnect)();
-        console.log("Connected :)");
-        // Database is Ready
-        app.listen(Number(process.env.PORT), () => console.log(`Server started with port ${process.env.PORT}`));
+        const content = jsonwebtoken_1.default.verify(token, JWT_PRIVATE_KEY);
+        return content;
     }
     catch (e) {
-        console.log(e);
+        throw new http_errors_1.default.Unauthorized("Tolong berikan token yang valid");
     }
 });
-main();
+exports.validateJWT = validateJWT;
