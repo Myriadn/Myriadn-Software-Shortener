@@ -10,6 +10,7 @@ CMD_PATH=./cmd/api/main.go
 # Output
 OUTPUT_DIR=./output
 
+# Backend
 all: build test ## Build binary
 
 run: ## Lokal run
@@ -43,3 +44,16 @@ watch: ## with air live-reload
 	}"
 
 .PHONY: all build run test clean watch
+
+# FrontEnd
+run-fe:
+	@echo "Vue Developing..."
+	@cd ./client && npm run dev
+
+format-fe:
+	@echo "Vue Formatting..."
+	@cd ./client && npm run format
+
+build-fe:
+	@echo "Building Graphics..."
+	@cd ./client && npm run build
