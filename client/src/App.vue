@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import Main from '@/pages/Main.vue'
+import MainLayout from './layouts/MainLayout.vue'
 </script>
 
 <template>
-  <Main />
+  <MainLayout />
 </template>
 
 <style scoped></style>

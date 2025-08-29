@@ -57,3 +57,8 @@ format-fe:
 build-fe:
 	@echo "Building Graphics..."
 	@cd ./client && npm run build
+
+install-fe:
+	@echo "Installing for Dependencies..."
+	@cd ./client && npm install
+	@echo "Done."
